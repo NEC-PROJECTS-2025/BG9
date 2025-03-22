@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Fetal Ultrasound Classification</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f4f8;  /* Light grayish-blue background */
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 20px;
+            background-color: #5f7a85;  /* Cool, calming blue */
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #3b4e58;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            margin: 5px;
+            background: linear-gradient(145deg, #4f6b77, #3a4f58);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .navbar a:hover {
+            background: linear-gradient(145deg, #3a4f58, #4f6b77);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar a.active {
+            background-color: #2d3b41;
+            color: white;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .navbar a:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-container h2 {
+            color: #3b4e58;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .about-container p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: justify;
+            margin: 20px 0;
+        }
+
+        .about-container ul {
+            color: #555;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .about-container ul li {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/NEC.png') }}" alt="Banner">
+        <h1>Explainable Fetal Ultrasound Classification Using CNN And MLP Models</h1>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}" class="active">About</a>
+        <a href="{{ url_for('predictions') }}">Predictions</a>
+        <a href="{{ url_for('evaluationmetrics') }}">Evaluation Metrics</a>
+        <a href="{{ url_for('flowchart') }}">Flowchart</a>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-container">
+        <h2>About This Project</h2>
+        <p>
+            The **Explainable Fetal Ultrasound Classification** project aims to classify fetal ultrasound image planes using deep learning models like Convolutional Neural Networks (CNN) and Multi-Layer Perceptron (MLP). Our goal is to apply **Explainable AI (XAI)** techniques to improve the transparency and interpretability of model predictions, particularly in the medical field where understanding model decisions is critical.
+        </p>
+
+        <p>
+            This system uses a combination of **image classification** techniques and **medical imaging** to categorize ultrasound images into six classes:
+        </p>
+
+        <ul>
+            <li>Fetal Abdomen</li>
+            <li>Fetal Brain</li>
+            <li>Fetal Femur</li>
+            <li>Fetal Thorax</li>
+            <li>Maternal Cervix</li>
+            <li>Other</li>
+        </ul>
+
+        <p>
+            The importance of this project lies in the integration of **deep learning** models with **explainability** methods, allowing clinicians to not only obtain accurate results but also gain insights into the reasoning behind these predictions. This level of transparency can be used to assist doctors in making more informed decisions.
+        </p>
+
+        <h3>Key Features:</h3>
+        <ul>
+            <li>Utilization of CNNs for image classification and MLP models for further analysis.</li>
+            <li>Application of **LIME** and **SHAP** for explainability and transparency in model predictions.</li>
+            <li>High accuracy in fetal ultrasound image classification to assist medical professionals.</li>
+            <li>Interactive interface for easy integration with healthcare applications.</li>
+        </ul>
+
+        <p>
+            The project also aims to provide a **user-friendly interface** for clinicians to easily upload ultrasound images and receive instant predictions with visual explanations on how the model arrived at its decision.
+        </p>
+    </div>
+</body>
+</html>

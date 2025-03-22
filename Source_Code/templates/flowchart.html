@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowchart</title>
+    
+    <!-- Load Mermaid.js from a CDN (Content Delivery Network) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <style>
+        /* Classic color scheme for the page */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #4a89cb;
+        }
+
+        #flowchart {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the button with classic colors */
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5d6874; /* Classic blue */
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #557088; /* Slightly darker blue on hover */
+        }
+
+        .mermaid {
+            background-color: #f9f9f9; /* Light background for flowchart */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Flowchart</h1>
+    
+    <!-- Define where the flowchart will appear -->
+    <div id="flowchart">
+        <!-- Define the flowchart content using Mermaid syntax -->
+        <div class="mermaid">
+            graph TD
+                A[Start] --> B[Load Dataset\n- Image: fetal_Plane_db\n- 6 Classes]
+                B --> C[Preprocessing\n- Resize Images\n- Normalize\n- Feature Extraction]
+                C --> D[Apply CNN Model\n- Classification Task]
+                D --> E[Pass Features to MLP Model]
+                E --> F[Model Training\n- Train MLP\n- Regularization, Dropout]
+                F --> G[Model Evaluation\n- Accuracy\n- Loss\n- Validation Accuracy]
+                G --> H[Apply LIME\n- Explanation Generation\n- Visualize Explanations]
+                H --> I[Metrics Evaluation\n- Accuracy\n- Precision\n- Recall\n- F1-Score\n- Confusion Matrix]
+                I --> J[End]
+        </div>
+    </div>
+
+    <!-- Go Back to Home Page Button -->
+    <div class="button-container">
+        <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+    </div>
+
+    <script type="text/javascript">
+        // Initialize Mermaid.js to render the flowchart when the page loads
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+</body>
+</html>

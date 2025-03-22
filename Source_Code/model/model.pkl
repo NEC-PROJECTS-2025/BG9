@@ -1,0 +1,8 @@
+import os
+
+# Check if the model file is empty
+file_size = os.path.getsize('model/model.pkl')
+print(f"Model file size: {file_size} bytes")
+
+if file_size == 0:
+    print("Model file is empty. Please save it again.")

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Fetal Ultrasound Classification</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f4f8;  /* Light grayish-blue background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            padding: 20px;
+            background-color: #5f7a85;  /* Cool, calming blue */
+            position: fixed;
+            top: 0;
+            z-index: 10;  /* Ensures header is on top */
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #3b4e58;
+            overflow: hidden;
+            width: 100%;
+            position: fixed;
+            top: 70px;
+            z-index: 5;  /* Ensures navbar stays below the header */
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            margin: 5px;
+            background: linear-gradient(145deg, #4f6b77, #3a4f58);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .navbar a:hover {
+            background: linear-gradient(145deg, #3a4f58, #4f6b77);
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar a.active {
+            background-color: #2d3b41;
+            color: white;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .navbar a:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .prediction-result-container {
+            max-width: 900px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 140px;  /* Adjust margin-top to account for the fixed header and navbar */
+            text-align: center;
+            z-index: 1;  /* Ensure content is above the background */
+        }
+
+        .prediction-result-container h2 {
+            color: #3b4e58;
+            font-size: 32px;
+        }
+
+        .result p {
+            color: #555;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            width: auto;  /* Ensures the image's natural width is maintained */
+            height: auto; /* Ensures the image's aspect ratio is maintained */
+            max-width: 200px; /* Sets a smaller size for the image */
+            max-height: 200px; /* Ensures the image doesn't exceed the specified dimensions */
+            margin-bottom: 30px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5f7a85;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #4f6b77;
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background-color: #3b4e58;
+        }
+
+        .button-container a:active {
+            transform: scale(0.98);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/NEC.png') }}" alt="Banner">
+        <h1>Explainable Fetal Ultrasound Classification Using CNN And MLP Models</h1>
+    </header>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}" class="active">About</a>
+        <a href="{{ url_for('predictions') }}">Predictions</a>
+        <a href="{{ url_for('evaluationmetrics') }}">Evaluation Metrics</a>
+        <a href="{{ url_for('flowchart') }}">Flowchart</a>
+    </div>
+
+    <div class="prediction-result-container">
+        <h2>Prediction Result</h2>
+
+        <!-- Display the predicted class -->
+        <div class="result">
+            <p><strong>Predicted Category: </strong>{{ result }}</p>
+        </div>
+
+        <!-- Display the uploaded image in the center -->
+        {% if image_file %}
+            <div class="image-container">
+                <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded Image">
+            </div>
+        {% endif %}
+
+        <!-- Buttons to upload another image or go back to home -->
+        <div class="button-container">
+            <a href="{{ url_for('predictions') }}">Upload Another Image</a>
+            <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
